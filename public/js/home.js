@@ -117,6 +117,9 @@ function home(){
     // console.log(sess.length)
     if(sess.length == 1){
         // console.log("in session")
+        let data = [{"iid":"1","iname":"lap1.jpg","amount":"30000","desc":"HP Pro-Book","quantity":"1"},{"iid":"2","iname":"lap2.jpg","amount":"40000","desc":"Chrome-Book","quantity":"1"},{"iid":"3","iname":"lap3.jpg","amount":"35000","desc":"Lenovo Legion","quantity":"1"},{"iid":"4","iname":"lap4.jpg","amount":"100000","desc":"Mac-Book Pro","quantity":"1"},{"iid":"5","iname":"lap5.jpg","amount":"50000","desc":"Hp Pavillion","quantity":"1"},{"iid":"6","iname":"lap6.jpg","amount":"55000","desc":"Asus TUF Gaming","quantity":"1"},{"iid":"7","iname":"lap7.jpg","amount":"50000","desc":"Mi Note-Book","quantity":"1"},{"iid":"8","iname":"lap8.jpg","amount":"43000","desc":"Dell H5483-21G","quantity":"1"}];
+        localStorage.setItem("Collections",JSON.stringify(data));
+        
         let message = 'Welcome to Rhibhus Shopping "'+sess[0].name+'"';
         $("#messageBox").html(message);
         let cdata = JSON.parse(localStorage.getItem("Collections"));
