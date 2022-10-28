@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <title>Home | Rhibhus Store</title>
+</head>
+<body onload="home()">
+   
+ <!-- nav -->  
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <img class="navbar-brand" src="/assets/images/Logo.jpeg" width="50px" alt="Logo">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/home"> Our Collections</a>
+          </li>
+          
+          
+        </ul>
+        <ul class="navbar-nav ms-auto ">
+            <li class="nav-item pe-3 ">
+                <a class="nav-link" href="/cart">Your Cart</a>
+            </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  id="accountName"  href="#"></a>
+                <ul class="dropdown-menu bg-secondary ">
+                  <li><a class="dropdown-item text-white "  target="_blank" href="https://www.linkedin.com/in/chirag-v-k-67073b1a3/">Help</a></li>
+                  <li><hr class="dropdown-divider "></hr</li>
+                  <li><a class="dropdown-item text-white " onclick="logout()">Log-Out</a></li>
+                </ul>
+              </li>
+              
+        </ul>
+        <!-- <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search">
+          <button class="btn btn-primary" type="button">Search</button>
+        </form> -->
+      </div>
+    </div>
+  </nav>
+  
+<!-- nav ends -->
+
+
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <strong  id="messageBox"></strong> 
+</div>
+
+<script>
+  var alertList = document.querySelectorAll('.alert');
+  alertList.forEach(function (alert) {
+    new bootstrap.Alert(alert)
+  })
+</script>
+
+
+<script>
+  var alertList = document.querySelectorAll('.alert');
+  alertList.forEach(function (alert) {
+    new bootstrap.Alert(alert)
+  })
+</script>
+
+<div id="cardBox" class="row p-4">
+
+         <!-- js part -->
+
+</div> 
+    
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="/js/home.js"></script>
+</body>
+</html>

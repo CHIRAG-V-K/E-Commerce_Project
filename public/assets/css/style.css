@@ -1,0 +1,70 @@
+*,*::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html{
+    /* 62.5% of 16px base font size is 10px */
+    font-size: 62.5%;
+}
+
+/* preserve 16px body font-size, set body font-size to 1.6rem */
+body{
+    /* 16px */
+    font-size: 1.6rem;
+}
+
+body{
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden !important;
+    box-sizing: border-box;
+}
+
+/* default css for every project */
+
+icon-shape {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+} 
+
+.icon-sm {
+    width: 2rem;
+    height: 2rem;
+}
+
+#cartBtn,#removeCartBtn{
+    width: 108px;
+    height: 29px;
+}
+
+#lbl{
+    font-size: 12px;
+}
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+} */
+
+#total {
+    height: 51px;
+    font-size: 23px;
+}
+
+#removeCartBtn{
+    width: 114px;
+    height: 34px;
+}
+
+#checkout{
+    width: 114px;
+    height: 34px;
+}
+
+#messageBox{
+    font-size: 20px;
+}
