@@ -72,7 +72,6 @@ function registerUser(){
         let pastData = JSON.parse(localStorage.getItem("User") || '[]');
         
         console.log(UID);
-        //
         console.log(pastData)
         let tempObj = {"uid":UID,"name": Name,"phone": Phone,"email": Email,"password": Password,"gender": Gender};
         pastData.push(tempObj)
@@ -85,29 +84,50 @@ function registerUser(){
 function login(){
     let email = $('#email').val();
     let password = $('#pswd').val();
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var passw=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+
+    if((email == '')){
+        alert('Enter your gmail');
+        document.getElementById('email').focus();
+        return ;
+    }
+    if(!email.match(mailformat))
+    {
+        alert('Enter your mail id in the correct format');
+        document.getElementById('email').focus();
+        return ;
+    }
+    if((!password.match(passw))){
+        alert('Enter your password in the required Format : min of 8 characters, 1 Upper case, 1 Lower case, 1 special character, 1 number');
+        document.getElementById('pswd').focus();
+        return ;
+    }  
+
     let data =JSON.parse(localStorage.getItem("User")) ;
     if(data !== null){
 
-    if(email !== undefined && email !== 'undefined' && email.length !== 0 && email !== ''&& password !== undefined && password !== 'undefined' && password.length !== 0 && password !== ''){
-            for (let i = 0; i < data.length; i++) {
-              if((email == data[i].email)&&(password == data[i].password)){
-                let sessData = [{"id":data[i].uid,"name": data[i].name}]
-                sessionStorage.setItem("currentUser",JSON.stringify(sessData));
-                alert(`Successfully logged in`);
-                window.location = "/home"
-              }
-              else {
-                continue;
-              }
+        if(email !== undefined && email !== 'undefined' && email.length !== 0 && email !== ''&& password !== undefined && password !== 'undefined' && password.length !== 0 && password !== ''){
+                for (let i = 0; i < data.length; i++) {
+                if((email == data[i].email)&&(password == data[i].password)){
+                    let sessData = [{"id":data[i].uid,"name": data[i].name}]
+                    sessionStorage.setItem("currentUser",JSON.stringify(sessData));
+                    alert(`Successfully logged in`);
+                    window.location = "/home"
+                }
+                else {
+                    continue;
+                }
+                }
             }
-          }
-          else{
-           alert("Invalid Data")
-          }
+            else{
+            alert("Invalid Data")
+            }
     }
     else{
         alert("User Doesn't exist! Please Register and Try again!");
     }
+    
 }
 // global variable
 let gOTP ;
@@ -122,8 +142,31 @@ function otp(){
 function otpVerification(){
     let email = $('#email').val();
     let otp = $('#otp').val();
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var otpformat  = /^[0-9]{1,6}$/ ;
+    if((email == '')){
+        alert('Enter your gmail');
+        document.getElementById('email').focus();
+        return ;
+    }
+    if((otp == '')){
+        alert('Enter your OTP');
+        document.getElementById('otp').focus();
+        return ;
+    }
+    if(!email.match(mailformat))
+    {
+        alert('Enter your mail id in the correct format');
+        document.getElementById('email').focus();
+        return ;
+    }
+    if(!otp.match(otpformat))
+    {
+        alert('Enter your 6 Digit OTP');
+        document.getElementById('otp').focus();
+        return ;
+    }
     let uData =JSON.parse(localStorage.getItem("User")) ;
-   
     if(uData !== null){
         if(email !== undefined && email !== 'undefined' && email.length !== 0 && email !== ''&& otp !== undefined && otp !== 'undefined' && otp.length !== 0 && otp !== ''){
                 for (let i = 0; i < uData.length; i++) {
