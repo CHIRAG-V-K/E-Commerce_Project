@@ -40,8 +40,11 @@ server.listen(app.get('port'),'0.0.0.0',function(){
 app.get("/", function(req,res){
   res.render(__dirname + '/pages/login.html');
 });
+
+app.get("/loginWithOtp", function(req,res){
+  res.render(__dirname + '/pages/loginOtp.html');
+});
 app.get("/register", function(req,res){
-  // console.log(`/form`);
   res.render(__dirname + '/pages/register.html');
 });
 
@@ -53,6 +56,15 @@ app.get("/cart",function(req,res){
   res.render(__dirname + '/pages/cart.html')
 })
 
+
 // GET APi's
 
+// POST Api's
 
+app.post("/otp",function(req,res){
+  let otp = ("" + Math.random()).substring(2, 8);
+  console.log("YOUR OTP:"+" "+ otp);
+  res.send(otp);
+})
+
+// POST Api's

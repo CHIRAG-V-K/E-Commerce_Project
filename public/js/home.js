@@ -10,6 +10,7 @@
 
 
 function registerUser(){
+    let UID = ("" + Math.random()).substring(2, 10);
     let Name = document.getElementById('name').value;
     let Phone = document.getElementById('phone').value;
     let Gender = document.querySelector('input[type="radio"]:checked').value;
@@ -69,7 +70,7 @@ function registerUser(){
             return ;
         }
         let pastData = JSON.parse(localStorage.getItem("User") || '[]');
-        let UID = ("" + Math.random()).substring(2, 10);
+        
         console.log(UID);
         //
         console.log(pastData)
@@ -108,7 +109,50 @@ function login(){
         alert("User Doesn't exist! Please Register and Try again!");
     }
 }
+// global variable
+let gOTP ;
+// global variable
+function otp(){
+    $("#messageBox").html("OTP has been Successfully sent to your Node Console")
+    $.post("/otp",{},(data,status)=>{
+        gOTP = data; 
+    });
+}
 
+function otpVerification(){
+    let email = $('#email').val();
+    let otp = $('#otp').val();
+    let uData =JSON.parse(localStorage.getItem("User")) ;
+   
+    if(uData !== null){
+        if(email !== undefined && email !== 'undefined' && email.length !== 0 && email !== ''&& otp !== undefined && otp !== 'undefined' && otp.length !== 0 && otp !== ''){
+                for (let i = 0; i < uData.length; i++) {
+                  if(email == uData[i].email){
+                    if(gOTP == otp){
+                        let sessData = [{"id":uData[i].uid,"name": uData[i].name}]
+                        sessionStorage.setItem("currentUser",JSON.stringify(sessData));
+                        alert(`Successfully logged in`);
+                        window.location = "/home"
+                    }
+                    else{
+                        alert("Invalid OTP")
+                    }
+                  }
+                  else {
+                    continue;
+                  }
+                }
+              }
+              else{
+               alert("Invalid Details")
+              }
+        }
+        else{
+            alert("User Doesn't exist! Please Register and Try again!");
+        }
+   
+ 
+}
 
 
 

@@ -9,13 +9,18 @@
     <title>Login</title>
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark" onload="otp()">
 
+
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong  id="messageBox"></strong> 
+</div>
 
 <div class="container mb-3 mt-5 p-5 bg-secondary ">
         
 
-        <h1 class="pb-3 text-light" >LOGIN :</h1>
+        <h1 class="pb-3 text-light" >LOGIN WITH OTP :</h1>
 
         <!-- <form  class="m-5  text-light" > -->
             <div class="mb-3 mt-3 text-light">
@@ -23,16 +28,14 @@
                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
             </div>
             <div class="mb-3  text-light">
-            <label for="pwd" class="form-label text-light">Password:</label>
-            <input type="password" class="form-control" id="pswd" placeholder="Enter password" name="pswd">
+            <label for="otp" class="form-label text-light">OTP:</label>
+            <input type="number" class="form-control" id="otp" placeholder="Enter OTP" name="otp">
             </div>
            
-            <button type="submit" onclick="login()" class="btn btn-primary">Log In</button>
+            <button type="submit" onclick="otpVerification()" class="btn btn-primary">Log In</button>
         <!-- </form> -->
-        <div class=" m-2 text-light">
-            <p class="">Log In with OTP <a href="/loginWithOtp"> Click here..</a></p>
-        </div>
-        <div class=" m-2 text-light">
+
+        <div class="pt-3 m-5 text-light">
             <p class="">If you are new to this Website <a href="/register"> Register here..</a></p>
         </div>
 
