@@ -132,69 +132,86 @@ function login(){
 // global variable
 let gOTP ;
 // global variable
-function otp(){
-    $("#messageBox").html("OTP has been Successfully sent to your Node Console")
-    $.post("/otp",{},(data,status)=>{
-        gOTP = data; 
-    });
+
+function hidden(){
+    $(".otp").hide()
+    $(".genotp").show()
+    $(".otpverify").hide()
+    $(".message").hide()
 }
 
-function otpVerification(){
+function otp(){
     let email = $('#email').val();
-    let otp = $('#otp').val();
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var otpformat  = /^[0-9]{1,6}$/ ;
     if((email == '')){
         alert('Enter your gmail');
         document.getElementById('email').focus();
         return ;
     }
+    if(!email.match(mailformat))
+    {
+        alert('Enter your gmail id in the correct format');
+        document.getElementById('email').focus();
+        return ;
+    }
+    let uData =JSON.parse(localStorage.getItem("User")) ;
+    if(uData !== null){
+        if(email !== undefined && email !== 'undefined' && email.length !== 0 && email !== '' ){
+            for (let i = 0; i < uData.length; i++) {
+                if(email == uData[i].email){
+                    $("#messageBox").html("OTP has been Successfully sent to your Node Console")
+                    $.post("/otp",{},(data,status)=>{
+                        gOTP = data; 
+                    });
+                    $(".otp").show()
+                    $(".genotp").hide()
+                    $(".otpverify").show()
+                    $(".message").show()        
+                }
+            }
+        }
+    }
+}
+    
+    
+
+function otpVerification(){
+    let email = $('#email').val();
+    let otp = $('#otp').val();
+    var otpformat  = /^[0-9]{1,6}$/ ;
+    
     if((otp == '')){
         alert('Enter your OTP');
         document.getElementById('otp').focus();
         return ;
     }
-    if(!email.match(mailformat))
-    {
-        alert('Enter your mail id in the correct format');
-        document.getElementById('email').focus();
-        return ;
-    }
+    
     if(!otp.match(otpformat))
     {
         alert('Enter your 6 Digit OTP');
         document.getElementById('otp').focus();
         return ;
     }
-    let uData =JSON.parse(localStorage.getItem("User")) ;
-    if(uData !== null){
-        if(email !== undefined && email !== 'undefined' && email.length !== 0 && email !== ''&& otp !== undefined && otp !== 'undefined' && otp.length !== 0 && otp !== ''){
-                for (let i = 0; i < uData.length; i++) {
-                  if(email == uData[i].email){
-                    if(gOTP == otp){
-                        let sessData = [{"id":uData[i].uid,"name": uData[i].name}]
-                        sessionStorage.setItem("currentUser",JSON.stringify(sessData));
-                        alert(`Successfully logged in`);
-                        window.location = "/home"
-                    }
-                    else{
-                        alert("Invalid OTP")
-                    }
-                  }
-                  else {
-                    continue;
-                  }
+    
+    if(gOTP == otp){
+        let uData =JSON.parse(localStorage.getItem("User")) ;
+        if(uData !== null){
+            for (let i = 0; i < uData.length; i++) {
+                if(uData[i].email == email){
+                    let sessData = [{"id":uData[i].uid,"name": uData[i].name}]
+                    sessionStorage.setItem("currentUser",JSON.stringify(sessData));
+                    alert(`Successfully logged in`);
+                    window.location = "/home"
                 }
-              }
-              else{
-               alert("Invalid Details")
-              }
+                
+            }
+           
         }
-        else{
-            alert("User Doesn't exist! Please Register and Try again!");
-        }
-   
- 
+    }
+    else{
+        alert("Invalid OTP")
+    }
+
 }
 
 
