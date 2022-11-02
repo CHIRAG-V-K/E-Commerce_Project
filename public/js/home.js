@@ -193,11 +193,11 @@ function otpVerification(){
         return ;
     }
     
-    if(gOTP == otp){
+    if(gOTP === otp){
         let uData =JSON.parse(localStorage.getItem("User")) ;
         if(uData !== null){
             for (let i = 0; i < uData.length; i++) {
-                if(uData[i].email == email){
+                if(uData[i].email === email){
                     let sessData = [{"id":uData[i].uid,"name": uData[i].name}]
                     sessionStorage.setItem("currentUser",JSON.stringify(sessData));
                     alert(`Successfully logged in`);
